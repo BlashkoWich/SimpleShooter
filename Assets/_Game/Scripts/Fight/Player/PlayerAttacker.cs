@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerAttacker : MonoBehaviour
 {
-    public Transform Pointer;
     private void Update()
     {
         if(Input.GetMouseButtonDown(0))
@@ -18,7 +17,10 @@ public class PlayerAttacker : MonoBehaviour
                 {
                     return;
                 }
-                Pointer.position = hit.point;
+                if(hit.collider.TryGetComponent(out HealthController healthController))
+                {
+                    healthController.TakeDamage(1);
+                }
             }
         }
     }
