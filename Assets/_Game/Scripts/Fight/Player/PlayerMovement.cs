@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
+    private Player _player;
+    [SerializeField]
     private CharacterController _characterController;
     [SerializeField]
     private float _speed;
@@ -13,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     {
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
-        Vector3 direction = transform.right * x + transform.forward * z;
+        Vector3 direction = _player.Rotator.right * x + _player.Rotator.forward * z;
         _characterController.SimpleMove(direction * _speed);
     }
 }
